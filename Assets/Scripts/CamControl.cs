@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using UnityEngine;
 
 public class CamControl : MonoBehaviour { 
@@ -16,9 +17,15 @@ public class CamControl : MonoBehaviour {
     // Update is called once per frame
     void LateUpdate()
     {
-        float curr_distance = (player.transform.position - transform.position).magnitude;
+        Vector3 playerPos = player.transform.position;
+        playerPos.y = 0;
+        Vector3 cameraPos = transform.position;
+        cameraPos.y = 0;
+        float curr_distance = (playerPos - cameraPos).magnitude;
 
-        transform.position += 0.1f*(curr_distance-desiredDistance) * (player.transform.position - transform.position);
+        Vector3 delta = 0.1f * (curr_distance - desiredDistance) * (playerPos - cameraPos);
+        delta.y = 0;
+        transform.position += delta;
         transform.LookAt(player.transform.position);
         
     }
