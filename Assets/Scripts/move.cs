@@ -30,9 +30,20 @@ public class move : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        var camera = Camera.main;
 
-        rb.AddForce(movement * speed);
+        var forward = camera.transform.forward;
+        var right = camera.transform.right;
+
+        forward.y = 0f;
+        right.y = 0f;
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 desiredMoveDirection = forward * moveVertical + right * moveHorizontal;
+
+        rb.AddForce(desiredMoveDirection * speed);
+
     }
 }
 
