@@ -7,6 +7,7 @@ public class move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
 
     }
 
@@ -15,8 +16,19 @@ public class move : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            GetComponent<Rigidbody>().AddForce(Vector3.up * 1000);
+            GetComponent<Rigidbody>().AddForce(Vector3.up * 500);
         }
+        
+    }
+
+    void FixedUpdate()
+    {
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+
+        
     }
 }
+
+    
 
