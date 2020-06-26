@@ -5,18 +5,21 @@ using UnityEngine;
 public class CamControl : MonoBehaviour { 
 
     public GameObject player;
-
-    private Vector3 offset;
+    public float desiredDistance = 10;
 
     // Start is called before the first frame update
     void Start()
     {
-        offset = transform.position - player.transform.position;   
+       
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = player.transform.position + offset;
+        float curr_distance = (player.transform.position - transform.position).magnitude;
+
+        transform.position += 0.1f*(curr_distance-desiredDistance) * (player.transform.position - transform.position);
+        transform.LookAt(player.transform.position);
+        
     }
 }
