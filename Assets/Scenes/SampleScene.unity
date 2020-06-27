@@ -435,6 +435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 813005324}
   desiredDistance: 10
+  dragSpeed: 2
 --- !u!1 &1354325495
 GameObject:
   m_ObjectHideFlags: 0
