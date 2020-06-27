@@ -20,6 +20,8 @@ public class CamControl : MonoBehaviour {
     // Update is called once per frame
     void LateUpdate()
     {
+        desiredDistance += Input.GetAxis("Mouse ScrollWheel");
+
         Vector3 playerPos = player.transform.position;
         playerPos.y = 0;
         Vector3 cameraPos = transform.position;
