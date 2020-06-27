@@ -32,21 +32,10 @@ public class CamControl : MonoBehaviour {
         delta.y = 0;
         transform.LookAt(player.transform.position);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            dragOrigin = Input.mousePosition;
-            
-            Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-            Vector3 move = new Vector3(pos.x * dragSpeed, 0, pos.y * dragSpeed);
-
-            transform.Translate(move, Space.World);
-        }
-        else
-        {
             transform.position += delta;
         }
 
        
 
     }
-}
+
