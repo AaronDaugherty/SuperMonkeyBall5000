@@ -5,24 +5,29 @@ using UnityEngine;
 public class move : MonoBehaviour
 {
     public float speed;
-    public GameObject the_camera;
-
     private Rigidbody rb;
+    float distToGround;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        distToGround = GetComponent<Collider>().bounds.extents.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             GetComponent<Rigidbody>().AddForce(Vector3.up * 500);
         }
         
+    }
+
+    bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
     }
 
     void FixedUpdate()
